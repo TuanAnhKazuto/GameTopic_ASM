@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 274e4f61c49b5f647ab2d5bcb47ea19d
+TextScriptImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 24532
+  packageName: Spaceflight Controls
+  packageVersion: 1.1
+  assetPath: Assets/Spaceflight Controls/Documentation/Spaceflight Controls Setup
+    Guide.txt
+  uploadId: 55325

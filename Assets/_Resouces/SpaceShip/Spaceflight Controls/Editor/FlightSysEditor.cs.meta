@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b58a9e7a47e9a5b47bf5d3894641e02a
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 24532
+  packageName: Spaceflight Controls
+  packageVersion: 1.1
+  assetPath: Assets/Spaceflight Controls/Editor/FlightSysEditor.cs
+  uploadId: 55325
