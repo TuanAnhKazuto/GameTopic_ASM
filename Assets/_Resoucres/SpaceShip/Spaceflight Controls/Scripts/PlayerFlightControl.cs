@@ -94,7 +94,7 @@ public class PlayerFlightControl : MonoBehaviour
 			
 		
 		//Getting the current speed.
-		currentMag = GetComponent<Rigidbody>().velocity.magnitude;
+		currentMag = GetComponent<Rigidbody>().linearVelocity.magnitude;
 		
 		//If input on the thrust axis is positive, activate afterburners.
 
@@ -123,7 +123,7 @@ public class PlayerFlightControl : MonoBehaviour
 			(yaw * turnspeed * Time.deltaTime),
 			(roll * turnspeed *  (rollSpeedModifier / 2) * Time.deltaTime));
 		
-		GetComponent<Rigidbody>().velocity = transform.forward * currentMag; //Apply speed
+		GetComponent<Rigidbody>().linearVelocity = transform.forward * currentMag; //Apply speed
 		
 		if (use_banking)
 			updateBanking(); //Calculate banking.
