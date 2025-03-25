@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/Scene01.unity
+    guid: 6d49259ceddaf68428e4af53f3479b0d
+  - enabled: 1
     path: Assets/_Scenes/LabRoom/TuanAnh.unity
     guid: 0c1b317081979fc45b34b79f5f3ad06b
   - enabled: 1
