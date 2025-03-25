@@ -8,6 +8,7 @@ public class PlayerFlightControl : NetworkBehaviour
     //"Objects", "For the main ship Game Object and weapons"));
     public GameObject actual_model; //"Ship GameObject", "Point this to the Game Object that actually contains the mesh for the ship. Generally, this is the first child of the empty container object this controller is placed in."
     public Transform weapon_hardpoint_1; //"Weapon Hardpoint", "Transform for the barrel of the weapon"
+    public Transform weapon_hardpoint_2; //"Weapon Hardpoint", "Transform for the barrel of the weapon"
     public GameObject bullet; //"Projectile GameObject", "Projectile that will be fired from the weapon hardpoint."
 
     //"Core Movement", "Controls for the various speeds for different operations."
@@ -41,7 +42,7 @@ public class PlayerFlightControl : NetworkBehaviour
     float distFromVertical; //Distance in pixels from the vertical center of the screen.
     float distFromHorizontal; //Distance in pixel from the horizontal center of the screen.
 
-    Vector2 mousePos = new Vector2(0, 0); //Pointer position from CustomPointer
+    Vector2 mousePos = new(0, 0); //Pointer position from CustomPointer
 
     float DZ = 0; //Deadzone, taken from CustomPointer.
     float currentMag = 0f; //Current speed/magnitude
@@ -49,7 +50,14 @@ public class PlayerFlightControl : NetworkBehaviour
     bool thrust_exists = true;
     bool roll_exists = true;
 
+    public NetworkRunner runner;
+
     //---------------------------------------------------------------------------------
+
+    private void Awake()
+    {
+        runner = GetComponent<NetworkRunner>();
+    }
 
     void Start()
     {
@@ -93,7 +101,7 @@ public class PlayerFlightControl : NetworkBehaviour
         }
 
 
-        updateCursorPosition();
+        UpdateCursorPosition();
 
         //Clamping the pitch and yaw values, and taking in the roll input.
         pitch = Mathf.Clamp(distFromVertical, -screen_clamp - DZ, screen_clamp + DZ) * pitchYaw_strength;
@@ -141,12 +149,12 @@ public class PlayerFlightControl : NetworkBehaviour
         GetComponent<Rigidbody>().linearVelocity = transform.forward * currentMag; //Apply speed
 
         if (use_banking)
-            updateBanking(); //Calculate banking.
+            UpdateBanking(); //Calculate banking.
 
     }
 
 
-    void updateCursorPosition()
+    void UpdateCursorPosition()
     {
 
         mousePos = CustomPointer.pointerPosition;
@@ -186,7 +194,7 @@ public class PlayerFlightControl : NetworkBehaviour
     }
 
 
-    void updateBanking()
+    void UpdateBanking()
     {
 
         //Load rotation information.
@@ -209,17 +217,24 @@ public class PlayerFlightControl : NetworkBehaviour
         //Please remove this and replace it with a shooting system that works for your game, if you need one.
         if (Input.GetMouseButtonDown(0))
         {
-            fireShot();
+            if(runner.CanSpawn && runner.LocalPlayer.IsRealPlayer)
+            {
+                FireShot();
+            }
+            //FireShot();
         }
-
-
     }
 
 
-    public void fireShot()
+    public void FireShot()
     {
 
         if (weapon_hardpoint_1 == null)
+        {
+            Debug.LogError("(FlightControls) Trying to fire weapon, but no hardpoint set up!");
+            return;
+        }
+        if (weapon_hardpoint_2 == null)
         {
             Debug.LogError("(FlightControls) Trying to fire weapon, but no hardpoint set up!");
             return;
@@ -231,6 +246,7 @@ public class PlayerFlightControl : NetworkBehaviour
             return;
         }
 
+
         //Shoots it in the direction that the pointer is pointing. Might want to take note of this line for when you upgrade the shooting system.
         if (Camera.main == null)
         {
@@ -238,7 +254,30 @@ public class PlayerFlightControl : NetworkBehaviour
             return;
         }
 
-        GameObject shot1 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_1.position, Quaternion.identity);
+        // ------------------------------------------
+        //Debug.Log("Runner check: " + (runner == null ? "NULL" : "OK"));
+
+        //if (!runner.IsRunning)
+        //{
+        //    Debug.LogError("NetworkRunner chưa chạy!");
+        //    return;
+        //}
+
+
+        //if (!Object.HasStateAuthority)
+        //{
+        //    Debug.LogError("Không có quyền thực thi fireShot() trên client này!");
+        //    return;
+        //}
+
+
+        // ------------------------------------------
+
+
+        //GameObject shot1 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_1.position, Quaternion.identity);
+        //GameObject shot2 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_2.position, Quaternion.identity);
+        var shot1 = runner.Spawn(bullet, weapon_hardpoint_1.position, Quaternion.identity);
+        var shot2 = runner.Spawn(bullet, weapon_hardpoint_2.position, Quaternion.identity);
 
         Ray vRay;
 
@@ -248,22 +287,23 @@ public class PlayerFlightControl : NetworkBehaviour
             vRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
 
 
-        RaycastHit hit;
 
         //If we make contact with something in the world, we'll make the shot actually go to that point.
-        if (Physics.Raycast(vRay, out hit))
+        if (Physics.Raycast(vRay, out RaycastHit hit))
         {
             shot1.transform.LookAt(hit.point);
             shot1.GetComponent<Rigidbody>().AddForce((shot1.transform.forward) * 9000f);
+
+            shot2.transform.LookAt(hit.point);
+            shot2.GetComponent<Rigidbody>().AddForce((shot2.transform.forward) * 9000f);
 
             //Otherwise, since the ray didn't hit anything, we're just going to guess and shoot the projectile in the general direction.
         }
         else
         {
             shot1.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
+            shot2.GetComponent<Rigidbody>().AddForce((vRay.direction) * 9000f);
         }
 
     }
-
-
 }

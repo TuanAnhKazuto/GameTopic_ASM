@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 66405a5a840355b489214db60c64d3b5
-NativeFormatImporter:
-  userData: 
+labels:
+- FusionPrefab
 AssetOrigin:
   serializedVersion: 1
   productId: 24532
@@ -9,3 +9,8 @@ AssetOrigin:
   packageVersion: 1.1
   assetPath: Assets/Spaceflight Controls/Resources/Bullet.prefab
   uploadId: 55325
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -40,12 +40,12 @@ public class CustomPointer : MonoBehaviour {
 	}
 	
 	void Start () {
-	
+
 		//Uncomment for Unity 5 to get rid of the warnings.
-		//Cursor.lockState = CursorLockMode.Locked;
-		//Cursor.visible = false;
-		
-		Screen.lockCursor = true;
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+
+		//Screen.lockCursor = true;
 		
 		
 		deadzone_rect = new Rect((Screen.width / 2) - (deadzone_radius), (Screen.height / 2) - (deadzone_radius), deadzone_radius * 2, deadzone_radius * 2);
