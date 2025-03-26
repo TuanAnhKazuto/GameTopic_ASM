@@ -221,7 +221,7 @@ public class PlayerFlightControl : NetworkBehaviour
             {
                 FireShot();
             }
-            FireShot();
+
         }
     }
 
@@ -253,19 +253,6 @@ public class PlayerFlightControl : NetworkBehaviour
             Debug.LogError("(FlightControls) Main camera is null! Make sure the flight camera has the tag of MainCamera!");
             return;
         }
-
-        // ------------------------------------------
-
-        Debug.Log("Runner check: " + (runner == null ? "NULL" : "OK"));
-
-        if (!runner.IsRunning)
-        {
-            Debug.LogError("NetworkRunner chưa chạy!");
-            return;
-        }
-
-        // ------------------------------------------
-
 
         //GameObject shot1 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_1.position, Quaternion.identity);
         //GameObject shot2 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_2.position, Quaternion.identity);

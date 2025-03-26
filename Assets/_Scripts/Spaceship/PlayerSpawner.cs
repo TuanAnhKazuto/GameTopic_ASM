@@ -23,6 +23,10 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
                     {
                         playerSetup.SetUpCamera();
                     }
+
+                    var playerGun = obj.GetComponent<PlayerFlightControl>();
+                    if (playerGun != null) playerGun.runner = runner;
+
                 });
         }
     }
