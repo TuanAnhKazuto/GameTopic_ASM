@@ -56,7 +56,7 @@ public class PlayerFlightControl : NetworkBehaviour
 
     private void Awake()
     {
-        runner = GetComponent<NetworkRunner>();
+        runner = GameObject.Find("Prototype Runner").GetComponent<NetworkRunner>();
     }
 
     void Start()
@@ -221,7 +221,7 @@ public class PlayerFlightControl : NetworkBehaviour
             {
                 FireShot();
             }
-            //FireShot();
+            FireShot();
         }
     }
 
@@ -255,21 +255,14 @@ public class PlayerFlightControl : NetworkBehaviour
         }
 
         // ------------------------------------------
-        //Debug.Log("Runner check: " + (runner == null ? "NULL" : "OK"));
 
-        //if (!runner.IsRunning)
-        //{
-        //    Debug.LogError("NetworkRunner chưa chạy!");
-        //    return;
-        //}
+        Debug.Log("Runner check: " + (runner == null ? "NULL" : "OK"));
 
-
-        //if (!Object.HasStateAuthority)
-        //{
-        //    Debug.LogError("Không có quyền thực thi fireShot() trên client này!");
-        //    return;
-        //}
-
+        if (!runner.IsRunning)
+        {
+            Debug.LogError("NetworkRunner chưa chạy!");
+            return;
+        }
 
         // ------------------------------------------
 
