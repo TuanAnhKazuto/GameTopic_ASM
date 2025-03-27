@@ -38,12 +38,12 @@ public class DemoUI : MonoBehaviour {
 
 		if (Application.loadedLevel != 3)
 		{
-			if (Input.mouseScrollDelta.y > 0)
+			if (Input.mouseScrollDelta.y < 0)
 			{
 				CameraFlightFollow.instance.follow_distance++;
 			}
 
-			if (Input.mouseScrollDelta.y < 0)
+			if (Input.mouseScrollDelta.y > 0)
 			{
 				CameraFlightFollow.instance.follow_distance--;
 			}

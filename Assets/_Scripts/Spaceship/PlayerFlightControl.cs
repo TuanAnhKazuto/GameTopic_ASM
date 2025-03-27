@@ -257,7 +257,9 @@ public class PlayerFlightControl : NetworkBehaviour
         //GameObject shot1 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_1.position, Quaternion.identity);
         //GameObject shot2 = (GameObject)GameObject.Instantiate(bullet, weapon_hardpoint_2.position, Quaternion.identity);
         var shot1 = runner.Spawn(bullet, weapon_hardpoint_1.position, Quaternion.identity);
+        Destroy(shot1, 3f);
         var shot2 = runner.Spawn(bullet, weapon_hardpoint_2.position, Quaternion.identity);
+        Destroy(shot1, 3f);
 
         Ray vRay;
 
