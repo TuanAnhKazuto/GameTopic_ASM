@@ -1,15 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Fusion;
+using UnityEngine;
 
-public class PSDestroy : MonoBehaviour {
+public class PSDestroy : NetworkBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		Destroy(gameObject, GetComponent<ParticleSystem>().duration);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    void Start()
+    {
+        Destroy(gameObject, GetComponent<ParticleSystem>().main.duration);
+    }
+
 }

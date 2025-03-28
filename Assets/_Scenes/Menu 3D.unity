@@ -611,7 +611,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 28698543986943188, guid: 4f8e3617e1862fa4c8712082837d8659, type: 3}
       propertyPath: m_Text
-      value: Single Play
+      value: 'Single
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 3287165410883496849, guid: 4f8e3617e1862fa4c8712082837d8659, type: 3}
       propertyPath: m_Camera
@@ -743,7 +745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6345639342378379423, guid: 4f8e3617e1862fa4c8712082837d8659, type: 3}
       propertyPath: m_Text
-      value: Multiplay
+      value: P v P
       objectReference: {fileID: 0}
     - target: {fileID: 6345639342384913785, guid: 4f8e3617e1862fa4c8712082837d8659, type: 3}
       propertyPath: m_Name
