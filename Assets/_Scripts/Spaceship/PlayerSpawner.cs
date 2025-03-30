@@ -29,5 +29,12 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
                 });
         }
+        
     }
+
+    public void Coop()
+    {
+
+    }    
+
 }
