@@ -1,15 +1,24 @@
-﻿using UnityEngine;
+﻿using Fusion;
 using System.Collections;
+using UnityEngine;
 
-public class PSDestroy : MonoBehaviour {
+public class PSDestroy : NetworkBehaviour
+{
+    public NetworkRunner runner;
+    // Use this for initialization
+    void Start()
+    {
+        //Destroy(gameObject, GetComponent<ParticleSystem>().main.duration);
+        StartCoroutine(Destroy(Object, GetComponent<ParticleSystem>().main.duration));
+    }
 
-	// Use this for initialization
-	void Start () {
-		Destroy(gameObject, GetComponent<ParticleSystem>().duration);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    IEnumerator Destroy(NetworkObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (obj != null && obj.IsValid)
+        {
+            Runner.Despawn(obj);
+        }
+    }
+
 }
