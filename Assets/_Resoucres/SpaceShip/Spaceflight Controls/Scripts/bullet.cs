@@ -13,7 +13,15 @@ public class Bullet : NetworkBehaviour
     {
 
         //GameObject.Instantiate(explo, col.contacts[0].point, Quaternion.identity);
-        Runner.Spawn(explo, col.contacts[0].point, Quaternion.identity);
+        Runner.Spawn(explo,
+            col.contacts[0].point,
+            Quaternion.identity,
+            Runner.LocalPlayer,
+            (runner, obj) =>
+            {
+                var explotion = obj.GetComponent<PSDestroy>();
+                if (explotion != null) explotion.runner = runner;
+            });
 
         //Destroy(gameObject);
         Runner.Despawn(Object);
