@@ -6,13 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scripts/_Scenes/Menu 3D.unity
+    path: Assets/_Scenes/LabRoom/HoangHon.unity
+    guid: 32df212c67e9bb84897149ca79c82ae1
+  - enabled: 1
+    path: Assets/_Scenes/Menu 3D.unity
     guid: fa0913115ac1d4fba8b9d10280f4b04d
   - enabled: 1
-    path: Assets/_Scripts/_Scenes/Scene01.unity
+    path: Assets/_Scenes/Scene01.unity
     guid: 6d49259ceddaf68428e4af53f3479b0d
   - enabled: 1
-    path: Assets/_Scripts/_Scenes/LabRoom/TuanAnh.unity
+    path: Assets/_Scenes/LabRoom/TuanAnh.unity
     guid: 0c1b317081979fc45b34b79f5f3ad06b
   - enabled: 1
     path: Assets/_Scenes/MainMenu.unity
