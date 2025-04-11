@@ -1,27 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DemoUI : MonoBehaviour {
 
 	bool cursorlock = true;
 	
 	// Update is called once per frame
-	void LateUpdate () {
+	void LateUpdate () 
+	{
 
-
-		//Uncomment for Unity 5 to get rid of the warnings.
 		if (cursorlock)
 			Cursor.lockState = CursorLockMode.Locked;
 		else
 			Cursor.lockState = CursorLockMode.None;
-
-
-		////Delete this statement for Unity 5.
-		//if (cursorlock)
-		//	Screen.lockCursor = true;
-		//else
-		//	Screen.lockCursor = false;		
-
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 			cursorlock = !cursorlock;
@@ -36,7 +28,7 @@ public class DemoUI : MonoBehaviour {
 			
 		}
 
-		if (Application.loadedLevel != 3)
+		if (SceneManager.loadedSceneCount != 3)
 		{
 			if (Input.mouseScrollDelta.y < 0)
 			{
