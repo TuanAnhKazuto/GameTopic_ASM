@@ -537,6 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 731256076}
   - component: {fileID: 731256075}
+  - component: {fileID: 731256077}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -572,6 +573,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &731256077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731256074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6445371b6eb1c143935d8f00b664fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterPrefabs:
+  - {fileID: 5114133220110319319, guid: ebc52ff3210fd554ab14ba3571d73ef3, type: 3}
+  - {fileID: 6575363489304366299, guid: 5ba89c821847f96409400e97d9070499, type: 3}
+  - {fileID: 8880442551571210616, guid: 1a1a1c8301e33c4479031a93a3a9c622, type: 3}
+  - {fileID: 5468382427075658557, guid: 7d1666d4a6b734446bcfdb3aaadc3cf2, type: 3}
+  - {fileID: 2487601679325213673, guid: 9f577d817321a514391ffd0d51781e14, type: 3}
+  - {fileID: 5621654099933794503, guid: 55b3830685ef2f54dba2757f9cb1c5cc, type: 3}
+  spawnPoint: {fileID: 0}
+  label: {fileID: 0}
 --- !u!1 &1513760137
 GameObject:
   m_ObjectHideFlags: 0
