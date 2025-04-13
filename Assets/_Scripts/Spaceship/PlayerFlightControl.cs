@@ -1,4 +1,5 @@
 ﻿using Fusion;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -54,9 +55,11 @@ public class PlayerFlightControl : NetworkBehaviour
 
     //---------------------------------------------------------------------------------
 
-    private void Awake()
+    public override void Spawned()
     {
+        base.Spawned();
         runner = GameObject.Find("Prototype Runner").GetComponent<NetworkRunner>();
+
     }
 
     void Start()
@@ -225,7 +228,6 @@ public class PlayerFlightControl : NetworkBehaviour
 
         }
     }
-
 
     public void FireShot()
     {

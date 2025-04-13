@@ -18,6 +18,6 @@ public class PlayerSetup : NetworkBehaviour
             camera.target = target;
             camera.customPointer.enabled = true;
             camera.demoUI.enabled = true;
-        }
+        }        
     }
 }
