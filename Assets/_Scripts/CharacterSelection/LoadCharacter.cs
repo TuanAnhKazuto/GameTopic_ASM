@@ -6,14 +6,11 @@ using TMPro;
 public class LoadCharacter : MonoBehaviour
 {
     public GameObject[] characterPrefabs;
-    public Transform spawnPoint;
-    public TMP_Text label;
+    public GameObject shipPrefab;
 
     void Start()
     {
         int selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
-        GameObject prefab = characterPrefabs[selectedCharacter];
-        GameObject clone = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
-        label.text = prefab.name;
+        shipPrefab = characterPrefabs[selectedCharacter];
     }
 }

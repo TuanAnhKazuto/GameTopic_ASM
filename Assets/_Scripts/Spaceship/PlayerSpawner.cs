@@ -3,16 +3,18 @@ using Fusion;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 {
-    public GameObject shipPrefab;
+    public LoadCharacter loadCharacter;
 
     public void PlayerJoined(PlayerRef player)
     {
         if (player == Runner.LocalPlayer)
         {
+            var prefab = loadCharacter.shipPrefab;
+
             var position = new Vector3(0,0,0);
 
             // spawn character
-            Runner.Spawn(shipPrefab,
+            Runner.Spawn(prefab,
                 position,
                 Quaternion.identity,
                 Runner.LocalPlayer,

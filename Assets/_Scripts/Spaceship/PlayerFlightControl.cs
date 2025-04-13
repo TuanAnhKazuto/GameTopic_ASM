@@ -154,7 +154,20 @@ public class PlayerFlightControl : NetworkBehaviour
 
         if (use_banking)
             UpdateBanking(); //Calculate banking.
+    }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (runner.CanSpawn && runner.LocalPlayer.IsRealPlayer)
+            {
+                FireShot();
+                Debug.Log("Shot fired in 'if'");
+            }
+            Debug.Log("Mouse button down");
+
+        }
     }
 
 
@@ -212,21 +225,6 @@ public class PlayerFlightControl : NetworkBehaviour
         //Apply the rotation to the gameobject that contains the model.
         actual_model.transform.rotation = Quaternion.Slerp(actual_model.transform.rotation, newRotation, bank_rotation_speed * Time.deltaTime);
 
-    }
-
-
-    void Update()
-    {
-
-        //Please remove this and replace it with a shooting system that works for your game, if you need one.
-        if (Input.GetMouseButtonDown(0))
-        {
-            if(runner.CanSpawn && runner.LocalPlayer.IsRealPlayer)
-            {
-                FireShot();
-            }
-
-        }
     }
 
     public void FireShot()
