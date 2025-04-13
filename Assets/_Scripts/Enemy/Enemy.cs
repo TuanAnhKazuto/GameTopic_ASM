@@ -4,56 +4,73 @@ using UnityEngine.UI;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float move = 10f; // T?c ?? di chuy?n
-    [SerializeField] private float rotationalDamp = 5f; // ?? tr? quay (t?ng ?? quay nhanh h?n)
+    [SerializeField] private float rotationalDamp = 5f; // ?? tr? quay
     [SerializeField] private float chaseRange = 30f; // Ph?m vi ?u?i theo
+    [SerializeField] private Transform defaultTarget; // M?c tiêu m?c ??nh khi ch?a có Player
+    [SerializeField] private Image healthBar; // Thanh máu c?a k? ??ch
     private Transform target; // ??i t??ng m?c tiêu
-    [SerializeField] private int damage = 10; // Sát th??ng m?i l?n ch?m
-    [SerializeField] private Image healthBar; // Thanh máu hi?n th? UI
-    private int maxHealth = 100; // Máu t?i ?a c?a nhân v?t
-    private int currentHealth; // Máu hi?n t?i c?a nhân v?t
+    private int maxHealth = 100; // Máu t?i ?a c?a k? ??ch
+    private int currentHealth; // Máu hi?n t?i c?a k? ??ch
+
+    [SerializeField] private GameObject attackArea; // Empty GameObject dùng ?? t?n công
 
     void Start()
     {
-        // Tìm ??i t??ng v?i tag "Player"
+        // Gán m?c tiêu m?c ??nh n?u Player ch?a xu?t hi?n
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            target = player.transform;
+            target = player.transform; // Gán m?c tiêu là Player n?u xu?t hi?n
+        }
+        else if (defaultTarget != null)
+        {
+            target = defaultTarget; // Gán m?c tiêu m?c ??nh ???c ??t tr??c
+            Debug.LogWarning("Player not found! Enemy is chasing the default target.");
+        }
+        else
+        {
+            Debug.LogError("No Player or default target found! Enemy will stay idle.");
         }
 
-        // Kh?i t?o máu cho nhân v?t
+        // Kh?i t?o máu cho k? ??ch
         currentHealth = maxHealth;
         UpdateHealthBar();
     }
 
     void Update()
     {
+        // Ki?m tra s? xu?t hi?n c?a Player trong game
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            target = player.transform; // C?p nh?t m?c tiêu khi Player xu?t hi?n
+        }
+
         if (target != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-            if (distanceToTarget <= chaseRange) // ?u?i theo trong ph?m vi ?ã ??t
+            // ?u?i theo m?c tiêu n?u trong ph?m vi ho?c s? d?ng defaultTarget
+            if (distanceToTarget <= chaseRange || target == defaultTarget)
             {
-                ChasePlayer();
+                ChaseTarget();
             }
         }
     }
 
-    void ChasePlayer()
+    void ChaseTarget()
     {
-        Turn(); // ?i?u ch?nh h??ng v? phía ng??i ch?i
-        Move(); // Ti?n v? phía tr??c
+        Turn(); // ?i?u ch?nh h??ng
+        Move(); // Ti?n v? phía m?c tiêu
     }
 
     void Turn()
     {
-        Vector3 direction = target.position - transform.position; // Tính h??ng t?i ng??i ch?i
-
-        // N?u kho?ng cách nh?, không c?n quay
+        Vector3 direction = target.position - transform.position; // Tính h??ng t?i m?c tiêu
         if (direction.magnitude > 0f)
         {
-            Quaternion rotation = Quaternion.LookRotation(direction); // Quay v? phía ng??i ch?i
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationalDamp * Time.deltaTime); // ?i?u ch?nh góc quay
+            Quaternion rotation = Quaternion.LookRotation(direction); // Xoay h??ng v? phía m?c tiêu
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationalDamp * Time.deltaTime); // Làm m??t góc quay
         }
     }
 
@@ -61,31 +78,10 @@ public class EnemyMovement : MonoBehaviour
     {
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-        // N?u quá g?n m?c tiêu, gi?m t?c ?? ?? không di chuy?n quá xa
+        // Ti?n g?n t?i m?c tiêu n?u còn kho?ng cách
         if (distanceToTarget > 1f)
         {
             transform.position += transform.forward * move * Time.deltaTime;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // Ki?m tra n?u ??i t??ng va ch?m có tag "Player"
-        if (other.CompareTag("Player"))
-        {
-            TakeDamage(damage); // Tr? máu c?a nhân v?t
-        }
-    }
-
-    private void TakeDamage(int damage)
-    {
-        currentHealth -= damage; // Gi?m máu
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Gi?i h?n t? 0 ??n t?i ?a
-        UpdateHealthBar(); // C?p nh?t thanh máu
-        if (currentHealth <= 0)
-        {
-            Debug.Log("Player defeated!");
-            Destroy(target.gameObject); // Xóa nhân v?t khi h?t máu
         }
     }
 
@@ -94,6 +90,27 @@ public class EnemyMovement : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.fillAmount = (float)currentHealth / maxHealth; // C?p nh?t thanh máu theo t? l?
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Ki?m tra n?u ??i t??ng va ch?m là Bullet
+        if (other.CompareTag("Bullet"))
+        {
+            Debug.Log("Enemy hit by Bullet! Destroying enemy.");
+            Destroy(gameObject); // Xóa k? ??ch
+        }
+
+        // Ki?m tra n?u ??i t??ng va ch?m là Player
+        if (other.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(10); // Tr? 10 máu c?a Player
+                Debug.Log("Player hit by attack! Player health reduced by 10.");
+            }
         }
     }
 }
