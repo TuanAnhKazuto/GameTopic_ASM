@@ -34,6 +34,7 @@ public class GameModeSelection : MonoBehaviour
     void ModeSelection(int mode)
     {
         PlayerPrefs.SetInt("GameMode", mode);
+        gameMode = mode;
         gameMode = PlayerPrefs.GetInt("GameMode");
         startGamePanel.SetActive(true);
     }
