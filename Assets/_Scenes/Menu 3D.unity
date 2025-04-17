@@ -1751,14 +1751,30 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1168486525291977692, guid: 7dc2a05fb60e9c941b8b759cf06cdac5, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168486525291977692, guid: 7dc2a05fb60e9c941b8b759cf06cdac5, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2350444078684442933, guid: 7dc2a05fb60e9c941b8b759cf06cdac5, type: 3}
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 6032883489017095922, guid: 7dc2a05fb60e9c941b8b759cf06cdac5, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6032883489017095922, guid: 7dc2a05fb60e9c941b8b759cf06cdac5, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: b21bf25d9ab72de49ba3edcdf60abfcc, type: 3}
+    - target: {fileID: 6032883489017095922, guid: 7dc2a05fb60e9c941b8b759cf06cdac5, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b21bf25d9ab72de49ba3edcdf60abfcc, type: 3}
     - target: {fileID: 6318084866498479130, guid: 7dc2a05fb60e9c941b8b759cf06cdac5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.015742779

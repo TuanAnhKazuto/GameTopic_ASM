@@ -23,11 +23,13 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/_Scenes/Menu 3D.unity
   - m_enabled: 1
-    m_path: Assets/_Scenes/MacthFound.unity
+    m_path: Assets/_Scenes/MatchFound.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/SelectionShip.unity
   - m_enabled: 1
-    m_path: Assets/_Scenes/Scene01.unity
+    m_path: Assets/_Scenes/MultiPlay.unity
+  - m_enabled: 1
+    m_path: Assets/_Scenes/SinglePlay.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings:
