@@ -1,42 +1,54 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100; // Máu t?i ?a
     private int currentHealth; // Máu hi?n t?i
-    [SerializeField] private Image healthBar; // Thanh máu (UI)
-    [SerializeField] private TextMeshProUGUI healthText; // V?n b?n hi?n th? máu (UI)
+    [SerializeField] private int damageFromBullet = 10; // L??ng máu b? tr? khi trúng ??n
 
     void Start()
     {
-        currentHealth = maxHealth; // Kh?i t?o máu ??y ??
-        UpdateHealthUI();
+        // Kh?i t?o máu ??y ??
+        currentHealth = maxHealth;
+
+        // C?p nh?t UI kh?i ??ng (c?p nh?t thanh máu)
+        UIManager.Instance.UpdateHealth(currentHealth);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Ki?m tra n?u va ch?m v?i ??i t??ng có tag "Bullet"
+        if (other.CompareTag("Bullet"))
+        {
+            TakeDamage(damageFromBullet); // Tr? máu
+            Debug.Log($"Player b? b?n! Máu gi?m {damageFromBullet}.");
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage; // Tr? máu
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // ??m b?o máu không nh? h?n 0
-        UpdateHealthUI();
+        // Tr? máu và gi?i h?n không nh? h?n 0
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
+        // C?p nh?t thanh máu trong UI
+        UIManager.Instance.UpdateHealth(currentHealth);
+
+        // X? lý khi máu b?ng 0
         if (currentHealth <= 0)
         {
-            Debug.Log("Player has been defeated!");
-            // Thêm hành ??ng khác nh? k?t thúc trò ch?i, h?i sinh, v.v.
+            Debug.Log("Ng??i ch?i ?ã b? ?ánh b?i!");
+            HandlePlayerDeath();
         }
     }
 
-    private void UpdateHealthUI()
+    private void HandlePlayerDeath()
     {
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = (float)currentHealth / maxHealth; // C?p nh?t thanh máu
-        }
-        if (healthText != null)
-        {
-            healthText.text = $"{currentHealth} / {maxHealth}"; // Hi?n th? máu d??i d?ng v?n b?n
-        }
+        // Hi?n th? thông báo thua
+        UIManager.Instance.ShowWinLoseMessage("You Lose!");
+        Debug.Log("K?t thúc trò ch?i.");
     }
+
+    
+
 }

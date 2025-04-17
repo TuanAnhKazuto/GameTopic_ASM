@@ -1,66 +1,55 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class Health : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public Image healthImage; // Thanh máu s? d?ng Image
-    public TextMeshProUGUI healthText; // Text hi?n th?
+    public static UIManager Instance { get; private set; } // Singleton ?? truy c?p toàn c?c
 
-    private int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] private Slider healthSlider; // Thanh máu
+    [SerializeField] private Slider mpSlider; // Thanh MP
+    [SerializeField] private GameObject winLosePanel; // B?ng thông báo th?ng/thua
+    [SerializeField] private TextMeshProUGUI winLoseText; // V?n b?n thông báo th?ng/thua
 
-    void Start()
+    private void Awake()
     {
-        currentHealth = maxHealth; // Gán máu ban ??u
-
-        // Ki?m tra xem các thành ph?n ?ã ???c gán ch?a
-        if (healthImage == null)
+        // Thi?t l?p Singleton
+        if (Instance == null)
         {
-            Debug.LogError("Health Image is not assigned in the Inspector!");
-        }
-
-        if (healthText == null)
-        {
-            Debug.LogError("Health Text is not assigned in the Inspector!");
-        }
-
-        UpdateHealthUI();
-    }
-
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        if (currentHealth < 0) currentHealth = 0;
-        UpdateHealthUI();
-    }
-
-    public void Heal(int healAmount)
-    {
-        currentHealth += healAmount;
-        if (currentHealth > maxHealth) currentHealth = maxHealth;
-        UpdateHealthUI();
-    }
-
-    private void UpdateHealthUI()
-    {
-        // Ki?m tra t?ng thành ph?n tr??c khi s? d?ng
-        if (healthImage != null)
-        {
-            healthImage.fillAmount = (float)currentHealth / maxHealth; // C?p nh?t m?c ?? ??y c?a thanh máu
+            Instance = this;
         }
         else
         {
-            Debug.LogWarning("Health Image is null. Please assign it in the Inspector.");
+            Destroy(gameObject); // Lo?i b? các instance trùng l?p
+        }
+    }
+
+    public void UpdateHealth(int currentHealth)
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.value = (float)currentHealth / 100; // C?p nh?t thanh máu
+        }
+    }
+
+    public void UpdateMP(int currentMP)
+    {
+        if (mpSlider != null)
+        {
+            mpSlider.value = (float)currentMP / 100; // C?p nh?t thanh MP
+        }
+    }
+
+    public void ShowWinLoseMessage(string message)
+    {
+        if (winLosePanel != null)
+        {
+            winLosePanel.SetActive(true); // Hi?n th? b?ng thông báo
         }
 
-        if (healthText != null)
+        if (winLoseText != null)
         {
-            healthText.text = $"{currentHealth}/{maxHealth}"; // C?p nh?t ch?
-        }
-        else
-        {
-            Debug.LogWarning("Health Text is null. Please assign it in the Inspector.");
+            winLoseText.text = message; // C?p nh?t n?i dung thông báo
         }
     }
 }

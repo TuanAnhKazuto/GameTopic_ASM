@@ -77,13 +77,20 @@ public class EnemyMovement : MonoBehaviour
     void Move()
     {
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        float khoangCachMongMuon = 5f; // Kho?ng cách an toàn gi?a k? ??ch và ng??i ch?i
 
-        // Ti?n g?n t?i m?c tiêu n?u còn kho?ng cách
-        if (distanceToTarget > 1f)
+        // Ch? di chuy?n khi kho?ng cách l?n h?n kho?ng cách mong mu?n
+        if (distanceToTarget > khoangCachMongMuon)
         {
             transform.position += transform.forward * move * Time.deltaTime;
         }
+        // D?ng l?i n?u k? ??ch ?ang trong kho?ng cách mong mu?n
+        else
+        {
+            Debug.Log("K? ??ch ?ang gi? kho?ng cách an toàn v?i ng??i ch?i.");
+        }
     }
+
 
     private void UpdateHealthBar()
     {
