@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MacthManager : NetworkBehaviour
+public class MatchManager : NetworkBehaviour
 {
     [Networked] public MatchState matchState { get; set; }
     [Networked] public int PlayerCount { get; set; }
