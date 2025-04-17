@@ -51,11 +51,11 @@ public class GameModeSelection : MonoBehaviour
 
             if (gameMode == 1)
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene("SelectionShip");
             }
             else if (gameMode == 2)
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("MatchFound");
             }
         }
     }
