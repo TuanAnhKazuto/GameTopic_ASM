@@ -22,10 +22,10 @@ public class OffscreenIndicator : MonoBehaviour
 
         if (isOffscreen)
         {
-            Vector3 dir = (target.position - mainCamera.transform.position).normalized;
-            dir.y = 0; // Chỉ cần xoay theo hướng ngang
-            float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-            arrowUI.rotation = Quaternion.Euler(0, 0, -angle);
+            Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            Vector2 dir = (new Vector2(screenPos.x, screenPos.y) - new Vector2(screenCenter.x, screenCenter.y)).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            arrowUI.rotation = Quaternion.Euler(0, 0, angle);
 
             Vector3 cappedScreenPos = screenPos;
 
