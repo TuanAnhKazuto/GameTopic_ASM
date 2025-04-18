@@ -47,5 +47,6 @@ MonoBehaviour:
   target: {fileID: 0}
   mainCamera: {fileID: 0}
   arrowUI: {fileID: 0}
+  targetCrosshair: {fileID: 0}
   Canvas: {fileID: 0}
   edgeBuffer: 50
