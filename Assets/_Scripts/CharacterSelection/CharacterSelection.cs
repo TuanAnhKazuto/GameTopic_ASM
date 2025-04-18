@@ -27,6 +27,13 @@ public class CharacterSelection : MonoBehaviour
     public void StartGame()
     {
         PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-        SceneManager.LoadScene("SinglePlay");
+        if(PlayerPrefs.GetInt("GameMode") == 1)
+        {
+            SceneManager.LoadScene("SinglePlay");
+        }
+        else if(PlayerPrefs.GetInt("GameMode") == 2)
+        {
+            SceneManager.LoadScene("MultiPlay");
+        }
     }
 }
