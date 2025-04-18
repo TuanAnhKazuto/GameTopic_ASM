@@ -721,6 +721,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 118753994}
     - target: {fileID: 4682597004667473982, guid: b6536cf9a9f4aac40b2be1bd6f79bf29, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682597004667473982, guid: b6536cf9a9f4aac40b2be1bd6f79bf29, type: 3}
       propertyPath: targetCrosshair
       value: 
       objectReference: {fileID: 1549361248}
