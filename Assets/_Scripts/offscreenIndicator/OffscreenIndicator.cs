@@ -9,6 +9,15 @@ public class OffscreenIndicator : MonoBehaviour
     public Canvas Canvas;
     public float edgeBuffer = 50f;
 
+    private void Awake()
+    {
+        if(target == null)
+        {
+            target = GameObject.FindWithTag("Player").transform;
+            mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        }
+    }
+
     void Update()
     {
         if (target == null || mainCamera == null) return;
