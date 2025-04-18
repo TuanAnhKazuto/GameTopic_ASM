@@ -55,13 +55,6 @@ public class PlayerFlightControl : NetworkBehaviour
 
     //---------------------------------------------------------------------------------
 
-    public override void Spawned()
-    {
-        base.Spawned();
-        runner = GameObject.Find("Prototype Runner").GetComponent<NetworkRunner>();
-
-    }
-
     void Start()
     {
 

@@ -1,6 +1,7 @@
 ﻿using Fusion;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MatchManager : NetworkBehaviour
@@ -11,11 +12,19 @@ public class MatchManager : NetworkBehaviour
     public Text player1Name;
     public Text player2Name;
 
+    public float timeToStart = 15;
+    public Text timeCountDown;
+
     public GameObject waitPanel;
 
-    void Start()
+    private void Start()
     {
         waitPanel.SetActive(true);
+        player1Name.color = Color.red;
+        player2Name.color = Color.red;
+        timeCountDown.text = timeToStart.ToString();
+
+        Debug.Log(Object);
     }
 
     public override void FixedUpdateNetwork()
@@ -24,36 +33,54 @@ public class MatchManager : NetworkBehaviour
         {
             if (PlayerCount == 2)
             {
-                waitPanel.SetActive(false); // ẩn panel chờ khi có đủ 2 người chơi
+                waitPanel.SetActive(false); 
             }
         }
-            Debug.Log("Player Count: " + PlayerCount);
 
     }
 
-    public override void Spawned()
+    public void NextScene()
     {
-        if (Object.HasStateAuthority)
+        SceneManager.LoadScene("SelectionShip");
+    }
+
+    private void Update()
+    {
+        
+        if (timeToStart > 0)
         {
-            PlayerCount++;
+            timeToStart -= (int)Time.deltaTime;
 
-            if (PlayerCount == 2)
+            if(timeToStart < 10)
             {
-                matchState = new MatchState
-                {
-                    isPlayer1Ready = false,
-                    isPlayer2Ready = false,
-                    
-                };
+                timeCountDown.text = "0" + timeToStart.ToString();
             }
+            else
+            {
+                timeCountDown.text = timeToStart.ToString();
+            }
+        }
+    }
 
-            Debug.Log("Player Count: " + PlayerCount);
+    public void AddPlayerExternally()
+    {
+        if (!Object.HasStateAuthority) return;
+
+        Debug.Log("Player Count: " + PlayerCount);
+
+        if (PlayerCount == 2)
+        {
+            matchState = new MatchState
+            {
+                isPlayer1Ready = false,
+                isPlayer2Ready = false
+            };
         }
     }
 
     public void ReadyBtn()
     {
-        Rpc_PlayerReady(Object.InputAuthority); // gọi hàm RPC để thông báo cho server
+        Rpc_PlayerReady(Object.InputAuthority);
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.StateAuthority)]
@@ -63,7 +90,7 @@ public class MatchManager : NetworkBehaviour
 
         if (players.Count < 2)
         {
-            Debug.LogWarning("Chưa đủ 2 người chơi để xác nhận Ready.");
+            
             return;
         }
 
@@ -71,29 +98,25 @@ public class MatchManager : NetworkBehaviour
             Player1IsReady();
         else if (who == players[1])
             Player2IsReady();
-
-        
     }
 
     private void Player1IsReady()
     {
-        var state = matchState; // tạo bản sao để chỉnh sửa
+        var state = matchState;
         state.isPlayer1Ready = true;
+        player1Name.color = Color.green;
+        matchState = state;
 
-        player1Name.color = Color.green; // đổi màu chữ thành xanh lá cây
-
-        matchState = state; // gán lại vào Networked struct
-        Debug.Log("Player 1 is ready: state = " + state.isPlayer1Ready);
+        Debug.Log("Player 1 is ready: " + state.isPlayer1Ready);
     }
 
     private void Player2IsReady()
     {
-        var state = matchState; // tạo bản sao để chỉnh sửa
+        var state = matchState;
         state.isPlayer2Ready = true;
+        player2Name.color = Color.green;
+        matchState = state;
 
-        player2Name.color = Color.green; // đổi màu chữ thành xanh lá cây
-
-        matchState = state; // gán lại vào Networked struct
-        Debug.Log("Player 2 is ready: state = " + state.isPlayer2Ready);
+        Debug.Log("Player 2 is ready: " + state.isPlayer2Ready);
     }
 }
