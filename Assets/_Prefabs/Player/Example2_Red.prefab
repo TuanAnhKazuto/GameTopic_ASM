@@ -14820,6 +14820,7 @@ GameObject:
   - component: {fileID: 263889200032159193}
   - component: {fileID: 8566032025798171723}
   - component: {fileID: 8041593510011502279}
+  - component: {fileID: -2329032501852148070}
   m_Layer: 2
   m_Name: Example2_Red
   m_TagString: Player
@@ -14957,6 +14958,18 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &-2329032501852148070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5468382427075658557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8e7f37e8cba0c4e95d6c76736118ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5586477370993635320
 GameObject:
   m_ObjectHideFlags: 0

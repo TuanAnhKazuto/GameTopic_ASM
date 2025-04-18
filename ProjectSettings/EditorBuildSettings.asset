@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/MacthFound.unity
+    path: Assets/_Scenes/MatchFound.unity
     guid: bd49e10dcb9efe74cb84cdbd92eb75a3
   - enabled: 1
     path: Assets/_Scenes/LabRoom/Cuong.unity

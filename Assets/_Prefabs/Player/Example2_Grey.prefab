@@ -29492,6 +29492,7 @@ GameObject:
   - component: {fileID: 8263187162275952466}
   - component: {fileID: 5805062159500800185}
   - component: {fileID: 1965556253139572450}
+  - component: {fileID: -7952656068736851969}
   m_Layer: 2
   m_Name: Example2_Grey
   m_TagString: Player
@@ -29629,6 +29630,18 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &-7952656068736851969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8880442551571210616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8e7f37e8cba0c4e95d6c76736118ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9004410663336560989
 GameObject:
   m_ObjectHideFlags: 0
