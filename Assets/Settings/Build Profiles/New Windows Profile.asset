@@ -21,8 +21,6 @@ MonoBehaviour:
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
-    m_path: Assets/_Scenes/LabRoom/TuanAnh.unity
-  - m_enabled: 1
     m_path: Assets/_Scenes/Menu 3D.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/MatchFound.unity
