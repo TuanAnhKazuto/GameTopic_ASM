@@ -19792,6 +19792,7 @@ GameObject:
   - component: {fileID: 6229550092775864340}
   - component: {fileID: 1585386266221265017}
   - component: {fileID: 5134951161092469403}
+  - component: {fileID: -2685086273905912249}
   m_Layer: 2
   m_Name: Example1_Red
   m_TagString: Player
@@ -19911,6 +19912,7 @@ MonoBehaviour:
   - {fileID: 5129141091677027087}
   - {fileID: 457920504920507202}
   - {fileID: 1585386266221265017}
+  - {fileID: -2685086273905912249}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &1585386266221265017
 MonoBehaviour:
@@ -19941,6 +19943,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8e7f37e8cba0c4e95d6c76736118ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2685086273905912249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575363489304366299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22390cf25c4f6348a94479d098023d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Health: 100
+  hpSlider: {fileID: 0}
 --- !u!1 &9105976797682127951
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
             // Fix for CS0029: Explicitly compare the integer value to determine the condition  
             if (PlayerPrefs.GetInt("GameMode", 1) == 1)
             {
-                position = new Vector3(-348, 10, 1612);
+                position = new Vector3(-348, 20, 1612);
                 rotation = Quaternion.Euler(0, 180, 0);
             }
             // spawn character  
@@ -31,6 +31,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
                     if (playerSetup != null)
                     {
                         playerSetup.SetUpCamera();
+                        playerSetup.SetUpUIHp();
                     }
 
                     var playerGun = obj.GetComponent<PlayerFlightControl>();

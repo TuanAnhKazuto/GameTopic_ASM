@@ -15,6 +15,8 @@ public class PlayerHealth : MonoBehaviour
         UIManager.Instance.UpdateHealth(currentHealth);
     }
 
+    
+
     private void OnTriggerEnter(Collider other)
     {
         // Ki?m tra n?u va ch?m v?i ??i t??ng có tag "Bullet"
@@ -24,7 +26,13 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log($"Player b? b?n! Máu gi?m {damageFromBullet}.");
         }
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(10);
+        }
+    }
     public void TakeDamage(int damage)
     {
         // Tr? máu và gi?i h?n không nh? h?n 0
@@ -48,7 +56,4 @@ public class PlayerHealth : MonoBehaviour
         UIManager.Instance.ShowWinLoseMessage("You Lose!");
         Debug.Log("K?t thúc trò ch?i.");
     }
-
-    
-
 }

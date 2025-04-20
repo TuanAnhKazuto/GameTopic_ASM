@@ -1154,6 +1154,7 @@ GameObject:
   - component: {fileID: 4817417352856544115}
   - component: {fileID: 2386901814757176974}
   - component: {fileID: -8377637394287025225}
+  - component: {fileID: -8711879683287287570}
   m_Layer: 2
   m_Name: Example3_Grey
   m_TagString: Player
@@ -1273,6 +1274,7 @@ MonoBehaviour:
   - {fileID: 6460819040549553928}
   - {fileID: 3387196966353276510}
   - {fileID: 2386901814757176974}
+  - {fileID: -8711879683287287570}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &2386901814757176974
 MonoBehaviour:
@@ -1303,6 +1305,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8e7f37e8cba0c4e95d6c76736118ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8711879683287287570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2487601679325213673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22390cf25c4f6348a94479d098023d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Health: 100
+  hpSlider: {fileID: 0}
 --- !u!1 &2770052504594075120
 GameObject:
   m_ObjectHideFlags: 0

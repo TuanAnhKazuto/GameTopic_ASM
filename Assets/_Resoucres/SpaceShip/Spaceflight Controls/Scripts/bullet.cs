@@ -1,44 +1,58 @@
 ﻿using UnityEngine;
 using Fusion;
-using static Unity.Collections.Unicode;
-using System.Collections;
-using Unity.VisualScripting;
 
 public class Bullet : NetworkBehaviour
 {
-
+    public PlayerRef shooter;
+    public int damage = 10;
     public GameObject explo;
 
-    void OnCollisionEnter(Collision col)
-    {
+    private bool spawnedReady = false;
 
-        //GameObject.Instantiate(explo, col.contacts[0].point, Quaternion.identity);
-        Runner.Spawn(explo,
-            col.contacts[0].point,
+    private TickTimer despawnTimer;
+
+    public override void Spawned()
+    {
+        spawnedReady = true;
+        if (Object.HasStateAuthority)
+            despawnTimer = TickTimer.CreateFromSeconds(Runner, 3f);
+
+        Debug.Log("Bullet Object: " + Object);
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        if (Object.HasStateAuthority && despawnTimer.Expired(Runner))
+        {
+            Runner.Despawn(Object);
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (!spawnedReady || !Object || !Object.HasStateAuthority) return;
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            var health = other.gameObject.GetComponent<PlayerHP>();
+            if (health != null && health.Object.InputAuthority != shooter)
+            {
+                health.RpcTakeDamage(damage);
+            }
+        }
+
+        // Spawn hiệu ứng nổ (chỉ nếu bạn muốn sync)
+        Runner.Spawn(
+            explo,
+            other.contacts[0].point,
             Quaternion.identity,
-            Runner.LocalPlayer,
+            Object.InputAuthority, // có thể thay bằng shooter hoặc player authority
             (runner, obj) =>
             {
                 var explotion = obj.GetComponent<PSDestroy>();
                 if (explotion != null) explotion.runner = runner;
             });
 
-        //Destroy(gameObject);
         Runner.Despawn(Object);
     }
-
-    public override void FixedUpdateNetwork()
-    {
-        StartCoroutine(AutoDespawn(Object, 3f));
-    }
-
-    IEnumerator AutoDespawn(NetworkObject obj, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (obj != null && obj.IsValid)
-        {
-            Runner.Despawn(obj);
-        }
-    }
-
 }
