@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169300104}
   - component: {fileID: 169300105}
+  - component: {fileID: 169300106}
   m_Layer: 0
   m_Name: Selection
   m_TagString: Untagged
@@ -348,6 +349,20 @@ MonoBehaviour:
   - {fileID: 552634188}
   - {fileID: 966670411}
   selectedCharacter: 0
+  timeCountDown: {fileID: 169300106}
+--- !u!114 &169300106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169300103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c932ebb2c27db6346b3d451de3aca891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countDown: 5
   timerText: {fileID: 1953212817}
 --- !u!1 &180348030 stripped
 GameObject:
@@ -1642,7 +1657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

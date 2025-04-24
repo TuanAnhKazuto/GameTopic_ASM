@@ -1953,6 +1953,7 @@ MonoBehaviour:
   player2Name: {fileID: 692746888}
   waitPanel: {fileID: 509366347}
   countDown: {fileID: 1550479505}
+  isHas2Players: 0
 --- !u!4 &1550479503
 Transform:
   m_ObjectHideFlags: 0
@@ -1994,7 +1995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c932ebb2c27db6346b3d451de3aca891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeCountDown: 10
+  countDown: 10
   timerText: {fileID: 1978986101}
 --- !u!1 &1691322861
 GameObject:
