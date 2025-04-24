@@ -12,54 +12,35 @@ public class MatchManager : NetworkBehaviour
     public Text player1Name;
     public Text player2Name;
 
-    public float timeToStart = 15;
-    public Text timeCountDown;
-
     public GameObject waitPanel;
+    public TimeCountDown countDown;
+    public bool isHas2Players = false;
 
     private void Start()
     {
         waitPanel.SetActive(true);
         player1Name.color = Color.red;
         player2Name.color = Color.red;
-        timeCountDown.text = timeToStart.ToString();
-
+        countDown.GetComponent<TimeCountDown>();
         Debug.Log(Object);
     }
 
-    public override void FixedUpdateNetwork()
+    private void Update()
     {
-        if (Object.HasStateAuthority)
+        if(isHas2Players)
         {
-            if (PlayerCount == 2)
+            Time.timeScale = 1f;
+            Debug.Log("TimeScale: " + Time.timeScale);
+            if (countDown.timeCountDown <= 0)
             {
-                waitPanel.SetActive(false); 
+                NextScene();
             }
         }
-
     }
 
     public void NextScene()
     {
         SceneManager.LoadScene("SelectionShip");
-    }
-
-    private void Update()
-    {
-        
-        if (timeToStart > 0)
-        {
-            timeToStart -= (int)Time.deltaTime;
-
-            if(timeToStart < 10)
-            {
-                timeCountDown.text = "0" + timeToStart.ToString();
-            }
-            else
-            {
-                timeCountDown.text = timeToStart.ToString();
-            }
-        }
     }
 
     public void AddPlayerExternally()

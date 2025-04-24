@@ -80,8 +80,7 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         if (count == 2)
         {
             matchManager.waitPanel.SetActive(false);
-            Time.timeScale = 1f;
-
+            matchManager.isHas2Players = true;
         }
     }
 

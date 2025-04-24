@@ -346,6 +346,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ready Btn
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_Text
       value: READY
@@ -1002,7 +1006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &509366348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1079,7 +1083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &660916676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1905,6 +1909,7 @@ GameObject:
   - component: {fileID: 1550479502}
   - component: {fileID: 1550479501}
   - component: {fileID: 1550479504}
+  - component: {fileID: 1550479505}
   m_Layer: 0
   m_Name: MacthManager
   m_TagString: Untagged
@@ -1946,9 +1951,8 @@ MonoBehaviour:
   _PlayerCount: 0
   player1Name: {fileID: 1513325085}
   player2Name: {fileID: 692746888}
-  timeToStart: 15
-  timeCountDown: {fileID: 1978986101}
   waitPanel: {fileID: 509366347}
+  countDown: {fileID: 1550479505}
 --- !u!4 &1550479503
 Transform:
   m_ObjectHideFlags: 0
@@ -1978,6 +1982,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matchManager: {fileID: 1550479502}
   _runner: {fileID: 1691322863}
+--- !u!114 &1550479505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550479500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c932ebb2c27db6346b3d451de3aca891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeCountDown: 10
+  timerText: {fileID: 1978986101}
 --- !u!1 &1691322861
 GameObject:
   m_ObjectHideFlags: 0
