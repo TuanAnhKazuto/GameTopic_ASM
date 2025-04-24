@@ -8,6 +8,7 @@ public class LoadGameMode : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         gameMode = PlayerPrefs.GetInt("GameMode");
         if (gameMode == 1)
         {

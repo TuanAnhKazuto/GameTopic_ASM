@@ -57,7 +57,6 @@ public class PlayerFlightControl : NetworkBehaviour
 
     void Start()
     {
-
         mousePos = new Vector2(0, 0);
         
         DZ = CustomPointer.instance.deadzone_radius;

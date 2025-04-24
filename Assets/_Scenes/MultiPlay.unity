@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1157795981099620698, guid: 2e07c466d2523624e89c6cdaa2c7c396, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2441786056998993407, guid: 2e07c466d2523624e89c6cdaa2c7c396, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -711,6 +715,10 @@ PrefabInstance:
     - target: {fileID: 3927690745020789895, guid: b6536cf9a9f4aac40b2be1bd6f79bf29, type: 3}
       propertyPath: m_Name
       value: OffscreenManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927690745020789895, guid: b6536cf9a9f4aac40b2be1bd6f79bf29, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4682597004667473982, guid: b6536cf9a9f4aac40b2be1bd6f79bf29, type: 3}
       propertyPath: Canvas
