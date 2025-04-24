@@ -31,7 +31,7 @@ public class MatchManager : NetworkBehaviour
         {
             Time.timeScale = 1f;
             Debug.Log("TimeScale: " + Time.timeScale);
-            if (countDown.timeCountDown <= 0)
+            if (countDown.countDown <= 0)
             {
                 NextScene();
             }

@@ -7,6 +7,8 @@ public class CharacterSelection : MonoBehaviour
     public GameObject[] character;
     public int selectedCharacter = 0;
 
+    public TimeCountDown timeCountDown;
+
     public void NextCharacter()
     {
         character[selectedCharacter].SetActive(false);
@@ -23,6 +25,14 @@ public class CharacterSelection : MonoBehaviour
             selectedCharacter += character.Length;
         }
         character[selectedCharacter].SetActive(true);
+    }
+
+    private void Update()
+    {
+        if(timeCountDown.countDown <= 0)
+        {
+            StartGame();
+        }
     }
 
     public void StartGame()

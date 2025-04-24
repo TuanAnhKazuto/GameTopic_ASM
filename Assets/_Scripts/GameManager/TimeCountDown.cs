@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class TimeCountDown : MonoBehaviour
 {
-    public float timeCountDown = 20f;
+    public float countDown = 20f;
     public Text timerText;
 
     private void Start()
     {
-        timerText.text = timeCountDown.ToString();
+        timerText.text = countDown.ToString();
     }
 
     private void Update()
@@ -18,16 +18,16 @@ public class TimeCountDown : MonoBehaviour
 
     private void TimeDown()
     {
-        timeCountDown -= Time.deltaTime;
-        Debug.Log("Time: " + timeCountDown);
+        countDown -= Time.deltaTime;
+        Debug.Log("Time: " + countDown);
 
-        if (Mathf.Round(timeCountDown) <= 9)
+        if (Mathf.Round(countDown) <= 9)
         {
-            timerText.text = "0" + Mathf.Round(timeCountDown).ToString();
+            timerText.text = "0" + Mathf.Round(countDown).ToString();
         }
         else
         {
-            timerText.text = Mathf.Round(timeCountDown).ToString();
+            timerText.text = Mathf.Round(countDown).ToString();
         }
     }
 }
