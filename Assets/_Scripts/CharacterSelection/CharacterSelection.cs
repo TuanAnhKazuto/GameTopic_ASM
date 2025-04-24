@@ -1,39 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class CharacterSelection : MonoBehaviour
 {
     public GameObject[] character;
     public int selectedCharacter = 0;
-
-    private float timeCountDown = 20f;
-    public Text timerText;
-
-    private void Start()
-    {
-        timerText.text = timeCountDown.ToString();
-    }
-
-    private void Update()
-    {
-        timeCountDown -= Time.deltaTime;
-
-        if (Mathf.Round(timeCountDown) <= 9)
-        {
-            timerText.text = "0" + Mathf.Round(timeCountDown).ToString();
-        }
-        else
-        {
-            timerText.text = Mathf.Round(timeCountDown).ToString();
-        }
-
-        if (timeCountDown <= 0)
-        {
-            PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-            StartGame();
-        }
-    }
 
     public void NextCharacter()
     {
