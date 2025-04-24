@@ -13,8 +13,7 @@ public class OffscreenIndicator : MonoBehaviour
     {
         if(target == null)
         {
-            target = GameObject.FindWithTag("Player").transform;
-            mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+            return;
         }
     }
 
