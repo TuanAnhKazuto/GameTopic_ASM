@@ -1,13 +1,12 @@
-using UnityEngine;
 using Fusion;
-using UnityEngine.InputSystem;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerSetup : NetworkBehaviour
 {
     public GameObject ship;
     public Transform target;
-    public PlayerHP playerHp;    
+    public PlayerHP playerHp;
 
     public void SetUpCamera()
     {
@@ -30,6 +29,16 @@ public class PlayerSetup : NetworkBehaviour
         {
             playerHp = ship.GetComponent<PlayerHP>();
             playerHp.hpSlider = _hpSlider;
+        }
+    }
+
+    public void SetUpOffScreen()
+    {
+        if (!Object.HasStateAuthority) return;
+        OffscreenIndicator offScreenIndicator = FindAnyObjectByType<OffscreenIndicator>();
+        if (offScreenIndicator != null)
+        {
+            offScreenIndicator.target = target;
         }
     }
 }

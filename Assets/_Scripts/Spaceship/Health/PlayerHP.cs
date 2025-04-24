@@ -25,8 +25,10 @@ public class PlayerHP : NetworkBehaviour
             if (Health <= 0)
             {
                 Health = 0;
-                // Handle player death
-                // You can add logic here to respawn the player or end the game
+                GameObject gameOver = GameObject.Find("LosePanel");
+                gameObject.SetActive(true);
+                Time.timeScale = 0f;
+                Runner.Despawn(Object);
             }
         }
     }
