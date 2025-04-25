@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 {
@@ -22,6 +23,8 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         matchManager = FindAnyObjectByType<MatchManager>();
 
         Time.timeScale = 0f;
+
+        DontDestroyOnLoad(this.gameObject);
 
         ConnetToFusion();
     }
@@ -41,24 +44,27 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
             PlayerCount = 2,
             IsVisible = true,
             IsOpen = true,
+            Scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex)
         };
 
         var resust = await _runner.StartGame(startGameArgs);
         if (resust.Ok)
         {
             Debug.Log("Connected to Fusion");
+            RunnerManager.Instance.Runner = _runner;
+
         }
         else
         {
             Debug.LogError("Failed to connect to Fusion");
         }
+
     }
 
     private IEnumerator WaitUntilMatchManagerReady()
     {
         while (matchManager == null || matchManager.Object == null)
         {
-            Debug.Log("Waiting for MatchManager to be ready...");
             yield return null; // chờ frame sau
         }
 
@@ -73,8 +79,13 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         //Debug.Log("Player joined: " + player);
-        StartCoroutine(WaitUntilMatchManagerReady());
-        
+        //StartCoroutine(WaitUntilMatchManagerReady());
+        //if (matchManager.Object.HasStateAuthority)
+        //{
+        //    matchManager.AddPlayerExternally();
+        //    Debug.Log("Player Count: " + matchManager.PlayerCount);
+        //}
+
         var count = runner.ActivePlayers.Count();
         Debug.Log(count);
         if (count == 2)

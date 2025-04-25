@@ -2,7 +2,7 @@
 using Fusion;
 using System.Collections;
 
-public class PlayerSpawner : MonoBehaviour
+public class PlayerSpawner : NetworkBehaviour
 {
     //public LoadCharacter loadCharacter;
 
@@ -68,25 +68,43 @@ public class PlayerSpawner : MonoBehaviour
     //}
 
     public LoadCharacter loadCharacter;
+    NetworkRunner _runner;
+
+    //private void Awake()
+    //{
+    //    if (prefab == null)
+    //    {
+    //        prefab = loadCharacter.shipPrefab;
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("Prefab already assigned in inspector");
+    //    }
+    //        Debug.Log("prefab: " + prefab.name);
+    //}
 
     private void Start()
     {
         // Chờ cho đến khi NetworkRunner sẵn sàng
-        StartCoroutine(SpawnWhenReady());
+        //StartCoroutine(SpawnWhenReady());
+        SpawnWhenReady();
+
     }
 
-    private IEnumerator SpawnWhenReady()
+    private void SpawnWhenReady()
     {
         // Đợi đến khi Runner đã sẵn sàng
-        while (RunnerManager.Instance == null || RunnerManager.Instance.Runner == null)
-        {
-            yield return null;
-        }
+        //while (RunnerManager.Instance == null || RunnerManager.Instance.Runner == null)
+        //{
+        //    Debug.Log("===Runner is not ready yet, waiting...===");
+        //    yield return null;
+        //}
 
         var runner = RunnerManager.Instance.Runner;
+        Debug.Log($"Runner is ready: {runner.IsRunning}\n Runner Sever: {runner.IsServer}\n Runner Local: {runner.LocalPlayer}");
 
         // Đảm bảo chỉ spawn nếu là local player
-        if (runner.IsRunning && runner.IsServer && runner.LocalPlayer != null)
+        if (runner.IsRunning && runner.LocalPlayer != null)
         {
             bool alreadySpawned = false;
             foreach (var obj in FindObjectsOfType<NetworkObject>())
@@ -103,10 +121,16 @@ public class PlayerSpawner : MonoBehaviour
                 SpawnPlayer(runner, runner.LocalPlayer);
             }
         }
+        else
+        {
+            Debug.Log("===Runner is not running or not server, waiting...===");
+        }
     }
 
     private void SpawnPlayer(NetworkRunner runner, PlayerRef player)
     {
+        runner = _runner;
+        if(!Object.HasStateAuthority) return;
         var prefab = loadCharacter.shipPrefab;
         var position = Vector3.zero;
         var rotation = Quaternion.identity;
@@ -136,7 +160,7 @@ public class PlayerSpawner : MonoBehaviour
                 position = new Vector3(0, 0, 200);
                 rotation = Quaternion.Euler(0, 180, 0);
             }
-            else
+            else if (playerIndex == 1)
             {
                 position = new Vector3(0, 0, -200);
                 rotation = Quaternion.Euler(0, 0, 0);

@@ -4,7 +4,7 @@ using UnityEngine;
 public class LoadGameMode : MonoBehaviour
 {
     int gameMode;
-    public FusionBootstrap fusionBootstrap;
+    //public FusionBootstrap fusionBootstrap;
 
     private void Start()
     {
@@ -26,11 +26,11 @@ public class LoadGameMode : MonoBehaviour
 
     public void SingleMode()
     {
-        fusionBootstrap.StartSinglePlayer();
+        //fusionBootstrap.StartSinglePlayer();
     }
 
     public void MultiMode()
     {
-        fusionBootstrap.StartSharedClient();
+        //fusionBootstrap.StartSharedClient();
     }
 }

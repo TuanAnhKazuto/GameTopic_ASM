@@ -30,7 +30,6 @@ public class MatchManager : NetworkBehaviour
         if(isHas2Players)
         {
             Time.timeScale = 1f;
-            Debug.Log("TimeScale: " + Time.timeScale);
             if (countDown.countDown <= 0)
             {
                 NextScene();
@@ -41,6 +40,7 @@ public class MatchManager : NetworkBehaviour
     public void NextScene()
     {
         SceneManager.LoadScene("SelectionShip");
+        Time.timeScale = 1;
     }
 
     public void AddPlayerExternally()
@@ -62,6 +62,7 @@ public class MatchManager : NetworkBehaviour
     public void ReadyBtn()
     {
         Rpc_PlayerReady(Object.InputAuthority);
+        Debug.Log("Is clicked: " + Object.InputAuthority);
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.StateAuthority)]
@@ -71,7 +72,7 @@ public class MatchManager : NetworkBehaviour
 
         if (players.Count < 2)
         {
-            
+            Debug.Log("Not enough players to start the game.");
             return;
         }
 
