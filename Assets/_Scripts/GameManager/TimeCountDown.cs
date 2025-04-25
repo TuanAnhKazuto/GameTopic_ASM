@@ -19,7 +19,6 @@ public class TimeCountDown : MonoBehaviour
     private void TimeDown()
     {
         countDown -= Time.deltaTime;
-        Debug.Log("Time: " + countDown);
 
         if (Mathf.Round(countDown) <= 9)
         {
