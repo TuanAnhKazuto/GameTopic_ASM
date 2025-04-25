@@ -1209,6 +1209,7 @@ GameObject:
   - component: {fileID: 662196779}
   - component: {fileID: 662196781}
   - component: {fileID: 662196780}
+  - component: {fileID: 662196782}
   m_Layer: 5
   m_Name: ReadyPanel
   m_TagString: Untagged
@@ -1279,6 +1280,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 662196778}
   m_CullTransparentMesh: 1
+--- !u!95 &662196782
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662196778}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d2cb772d06109a40a4742416cd0d6f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &671003659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1995,7 +2018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c932ebb2c27db6346b3d451de3aca891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDown: 10
+  countDown: 5
   timerText: {fileID: 1978986101}
 --- !u!1 &1691322861
 GameObject:
